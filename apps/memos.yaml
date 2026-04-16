@@ -8,7 +8,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/wndnjs0/homelab-k3s.git
+    repoURL: https://github.com/wndnjs0/my-k3s.git
     targetRevision: HEAD
     path: manifests/memos
   destination:
