@@ -22,15 +22,6 @@ spec:
             enabled: true
             format: "json"
             timezone: "Asia/Seoul"
-        ports:
-          traefik:
-            expose:
-              default: true
-            exposedPort: 29000
-          metrics:
-            expose:
-              default: true
-            exposedPort: 29001
         persistence:
           enabled: true
         certificatesResolvers: 
