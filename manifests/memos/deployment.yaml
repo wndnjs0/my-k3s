@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: memos
+spec:
+  selector:
+    matchLabels:
+      app: memos
+  template:
+    metadata:
+      labels:
+        app: memos
+    spec:
+      containers:
+      - name: memos
+        image: neosmemo/memos:0.26.2
+        ports:
+        - containerPort: 5230
+          name: http
+        envFrom:
+        - secretRef:
+            name: memos
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 5230
+          initialDelaySeconds: 30
+          periodSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /healthz
+            port: 5230
+          initialDelaySeconds: 5
+          periodSeconds: 5

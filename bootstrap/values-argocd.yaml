@@ -1,0 +1,14 @@
+global:
+  domain: argocd.jmly.me
+configs:
+  params:
+    server.insecure: true
+server:
+  ingress:
+    enabled: true
+    ingressClassName: traefik
+    annotations:
+      traefik.ingress.kubernetes.io/router.entrypoints: websecure
+      traefik.ingress.kubernetes.io/router.tls.certresolver: letsencrypt
+    hostname: argocd.jmly.me
+    tls: true
