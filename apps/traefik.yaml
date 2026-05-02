@@ -1,0 +1,45 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: traefik
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "0"
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    repoURL: https://traefik.github.io/charts
+    chart: traefik
+    targetRevision: 39.0.7
+    helm:
+      values: |
+        image:
+          tag: 3.6.13
+        global:
+          sendAnonymousUsage: true
+        logs:
+          access:
+            enabled: true
+            format: "json"
+            timezone: "Asia/Seoul"
+        persistence:
+          enabled: true
+        certificatesResolvers: 
+          letsencrypt:
+            acme:
+              caServer: https://acme-staging-v02.api.letsencrypt.org/directory
+              email: juuuwon2@gmail.com
+              storage: /data/acme.json
+              httpChallenge:
+                entryPoint: web
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: kube-system
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
