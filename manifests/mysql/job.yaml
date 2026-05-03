@@ -19,5 +19,5 @@ spec:
             - sh
             - -c
             - |
-              mysql -h mysql -u ${MYSQL_USER} -p${MYSQL_PASSWORD} \
+              mysql -h mysql -u root -p${MYSQL_PASSWORD} \
                 -e "CREATE DATABASE IF NOT EXISTS ghost;"
