@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: immichi
+  name: immich
   namespace: argocd
   annotations:
     argocd.argoproj.io/sync-wave: "2"
@@ -12,10 +12,10 @@ spec:
   source:
     repoURL: https://github.com/wndnjs0/my-k3s-temp.git
     targetRevision: HEAD
-    path: manifests/immichi
+    path: manifests/immich
   destination:
     server: https://kubernetes.default.svc
-    namespace: immichi
+    namespace: immich
   syncPolicy:
     automated:
       prune: true
