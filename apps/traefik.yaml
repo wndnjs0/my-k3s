@@ -38,9 +38,9 @@ spec:
           websecure:
             transport:
               respondingTimeouts:
-                readTimeout: 0
-                writeTimeout: 0
-                idleTimeout: 0
+                readTimeout: 0s
+                writeTimeout: 0s
+                idleTimeout: 0s
   destination:
     server: https://kubernetes.default.svc
     namespace: kube-system
