@@ -20,4 +20,4 @@ spec:
             - -c
             - |
               export PGPASSWORD=${POSTGRES_PASSWORD}
-              psql -h postgres -U ${POSTGRES_USER} -c "CREATE DATABASE memos";
+              psql -h postgres -U ${POSTGRES_USER} -c "CREATE DATABASE memos" || true
