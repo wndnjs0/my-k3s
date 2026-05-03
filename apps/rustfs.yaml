@@ -25,7 +25,7 @@ spec:
           existingSecret: rustfs
         ingress:
           enabled: true
-          className: "traefik" # Specify the classname, traefik or nginx. Different classname has different annotations for session sticky.
+          className: traefik
           annotations:
             traefik.ingress.kubernetes.io/router.entrypoints: websecure
             traefik.ingress.kubernetes.io/router.tls.certresolver: letsencrypt
@@ -34,8 +34,6 @@ spec:
               paths:
                 - path: /
                   pathType: Prefix
-        secret:
-          existingSecret: "rustfs"
   destination:
     server: https://kubernetes.default.svc
     namespace: rustfs
