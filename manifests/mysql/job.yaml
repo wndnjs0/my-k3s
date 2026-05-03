@@ -11,7 +11,7 @@ spec:
       restartPolicy: Never
       containers:
         - name: create-db
-          image: mysql:8-debian
+          image: mysql:8.0-debian
           envFrom:
             - secretRef:
                 name: mysql
