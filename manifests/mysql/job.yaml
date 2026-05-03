@@ -1,0 +1,23 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: mysql-initialize
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
+spec:
+  ttlSecondsAfterFinished: 60
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: create-db
+          image: mysql:8-debian
+          envFrom:
+            - secretRef:
+                name: mysql
+          command:
+            - sh
+            - -c
+            - |
+              mysql -h mysql -u ${MYSQL_USER} -p${MYSQL_PASSWORD} \
+                -e "CREATE DATABASE IF NOT EXISTS ghost;"
