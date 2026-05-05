@@ -3,6 +3,12 @@ global:
 configs:
   params:
     server.insecure: true
+controller:
+  metrics:
+    enabled: true
+redis:
+  exporter:
+    enabled: true
 server:
   ingress:
     enabled: true
@@ -11,6 +17,14 @@ server:
       traefik.ingress.kubernetes.io/router.entrypoints: websecure
       traefik.ingress.kubernetes.io/router.tls.certresolver: letsencrypt
     hostname: argocd.jmly.me
+  metrics:
+    enabled: true
+repoServer:
+  metrics:
+    enabled: true
+applicationSet:
+  metrics:
+    enabled: true
 notifications:
   enabled: false
 dex:
