@@ -22,6 +22,16 @@ spec:
         envFrom:
         - secretRef:
             name: mysql
+        readinessProbe:
+          exec:
+            command:
+            - sh
+            - -c
+            - mysqladmin ping -h localhost -u root -p${MYSQL_ROOT_PASSWORD}
+          initialDelaySeconds: 5
+          periodSeconds: 5
+          timeoutSeconds: 3
+          failureThreshold: 5
         volumeMounts:
         - name: mysql-data
           mountPath: /var/lib/mysql
