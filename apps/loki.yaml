@@ -32,10 +32,16 @@ spec:
                   period: 24h
         deploymentMode: SingleBinary
         singleBinary:
-          replicas: 1
+          replicas: 1 
           persistence:
             enabled: true
             size: 200Gi
+        read:
+          replicas: 0
+        write:
+          replicas: 0
+        backend:
+          replicas: 0
         gateway:
           enabled: false
         chunksCache:
