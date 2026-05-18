@@ -22,6 +22,8 @@ spec:
             server:
               DOMAIN: git.jmly.me
               ROOT_URL: https://git.jmly.me
+            DEFAULT:
+              APP_NAME: "Private Git"
             database:
               DB_TYPE: sqlite3
         service:
