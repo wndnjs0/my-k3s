@@ -19,13 +19,16 @@ spec:
           admin:
             existingSecret: gitea-secrets
           config:
+            DEFAULT:
+              APP_NAME: "Private Git"
             server:
               DOMAIN: git.jmly.me
               ROOT_URL: https://git.jmly.me
-            DEFAULT:
-              APP_NAME: "Private Git"
             database:
               DB_TYPE: sqlite3
+            service:
+              DISABLE_REGISTRATION: true
+              REQUIRE_SIGNIN_VIEW: true
         service:
           http:
             type: ClusterIP
