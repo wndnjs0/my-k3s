@@ -12,7 +12,7 @@ spec:
   source:
     repoURL: https://dl.gitea.com/charts
     chart: gitea
-    targetRevision: 1.4.1
+    targetRevision: 12.6.0
     helm:
       values: |
         gitea:
