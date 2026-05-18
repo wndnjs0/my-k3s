@@ -30,7 +30,7 @@ spec:
         deployment:
           env:
           - name: GITEA____APP_NAME
-            value: "Private Git"
+            value: "Keep out!"
         service:
           http:
             type: ClusterIP
