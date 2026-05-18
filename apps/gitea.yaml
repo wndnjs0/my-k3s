@@ -1,0 +1,56 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: gitea
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    repoURL: https://dl.gitea.com/charts
+    chart: gitea
+    targetRevision: 0.1.0
+    helm:
+      values: |
+        gitea:
+          admin:
+            existingSecret: gitea-secrets
+          config:
+            server:
+              DOMAIN: git.juuuwon2.com
+              ROOT_URL: https://git.juuuwon2.com
+            database:
+              DB_TYPE: sqlite3
+        service:
+          http:
+            type: ClusterIP
+            port: 3000
+          ssh:
+            type: ClusterIP
+            port: 22
+        ingress:
+          enabled: true
+          className: traefik
+          hosts:
+            - host: git.juuuwon2.com
+              paths:
+                - path: /
+        persistence:
+          enabled: true
+          size: 200Gi
+        postgresql:
+          enabled: false
+        postgresql-ha:
+          enabled: false
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: gitea
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
