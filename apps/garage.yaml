@@ -37,6 +37,9 @@ spec:
             size: 200Gi
             hostPath: /var/lib/garage/data
 
+        image:
+          repository: dxflrs/arm64_garage
+
         deployment:
           kind: StatefulSet
           replicaCount: 1
