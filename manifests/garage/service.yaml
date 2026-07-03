@@ -39,3 +39,17 @@ spec:
       port: 3903
       targetPort: 3903
       protocol: TCP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: garage-webui
+spec:
+  type: ClusterIP
+  selector:
+    app: garage
+  ports:
+    - name: garage-webui
+      port: 3909
+      targetPort: 3909
+      protocol: TCP
