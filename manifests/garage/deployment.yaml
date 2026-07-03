@@ -18,6 +18,7 @@ spec:
           volumeMounts:
             - name: config
               mountPath: /etc/garage.toml
+              subPath: garage.toml
       volumes:
         - name: config
           secret:
