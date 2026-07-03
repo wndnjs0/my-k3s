@@ -22,8 +22,6 @@ server:
 repoServer:
   metrics:
     enabled: true
-applicationSet:
-  enabled: false
 notifications:
   enabled: false
 dex:
