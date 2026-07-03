@@ -7,7 +7,7 @@ spec:
     - websecure
     - web
   routes:
-    - match: HostSNI(`www.microsoft.com`)
+    - match: HostSNI(`www.apple.com`)
       services:
         - name: xray
           port: 443
