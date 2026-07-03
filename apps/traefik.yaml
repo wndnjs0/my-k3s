@@ -38,12 +38,6 @@ spec:
               httpChallenge:
                 entryPoint: web
         ports:
-          web:
-            redirections:
-              entryPoint:
-                to: websecure
-                scheme: https
-                permanent: true
           websecure:
             transport:
               respondingTimeouts:
