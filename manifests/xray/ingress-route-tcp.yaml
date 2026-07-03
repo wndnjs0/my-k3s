@@ -10,6 +10,5 @@ spec:
       services:
         - name: xray
           port: 443
-          nativeLB: true
   tls:
     passthrough: true
