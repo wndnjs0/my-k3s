@@ -23,8 +23,7 @@ repoServer:
   metrics:
     enabled: true
 applicationSet:
-  metrics:
-    enabled: true
+  enabled: false
 notifications:
   enabled: false
 dex:
