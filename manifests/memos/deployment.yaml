@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
       - name: memos
-        image: neosmemo/memos:0.28.0
+        image: neosmemo/memos:0.29.0
         envFrom:
         - secretRef:
             name: memos
