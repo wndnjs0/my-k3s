@@ -1,0 +1,41 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: bento-pdf
+  namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    repoURL: https://harish2k01.github.io/helm-charts
+    chart: bentopdf
+    targetRevision: 0.1.3
+    helm:
+      values: |
+        image:
+          repository: ghcr.io/alam00000/bentopdf-simple
+          tag: latest
+        ingress:
+          enabled: true
+          className: traefik
+          hosts:
+            - host: pdf.jmly.me
+              paths:
+                - path: /
+                  pathType: Prefix
+        resources:
+          requests:
+            cpu: 10m
+            memory: 32Mi
+          limits:
+            memory: 128Mi
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: bentopdf
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
