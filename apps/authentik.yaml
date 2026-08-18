@@ -1,25 +1,26 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: ghost
+  name: authentik
   namespace: argocd
   annotations:
-    argocd.argoproj.io/sync-wave: "2"
+    argocd.argoproj.io/sync-wave: "0"
   finalizers:
-    - resources-finalizer.argocd.argoproj.io
+  - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
   source:
-    repoURL: https://github.com/wndnjs0/my-k3s.git
-    targetRevision: HEAD
-    path: manifests/ghost
+    repoURL: https://charts.goauthentik.io
+    chart: authentik
+    targetRevision: 12.6.0
+    helm:
+      values: |
   destination:
     server: https://kubernetes.default.svc
-    namespace: ghost
+    namespace: authentik
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
     syncOptions:
       - CreateNamespace=true
-      - PruneLast=true
