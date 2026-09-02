@@ -23,10 +23,6 @@ spec:
             enabled: false
         secret:
           existingSecret: rustfs
-        storageclass:
-          name: local-path
-          dataStorageSize: 200Gi
-          logStorageSize: 200Gi
         ingress:
           enabled: true
           className: traefik
