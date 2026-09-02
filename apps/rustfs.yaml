@@ -12,7 +12,7 @@ spec:
   source:
     repoURL: https://charts.rustfs.com
     chart: rustfs
-    targetRevision: 0.8.0
+    targetRevision: 0.12.0
     helm:
       values: |
         replicaCount: 1
@@ -23,6 +23,10 @@ spec:
             enabled: false
         secret:
           existingSecret: rustfs
+        storageclass:
+          name: local-path
+          dataStorageSize: 200Gi
+          logStorageSize: 200Gi
         ingress:
           enabled: true
           className: traefik
@@ -36,8 +40,8 @@ spec:
                   pathType: Prefix
         config:
           rustfs:
-            log_level: "warn"
-            region: "rustfs"
+            log_level: "info"
+            region: "us-east-1"
             obs_log_directory: ""
             log_rotation:
               size: 100
