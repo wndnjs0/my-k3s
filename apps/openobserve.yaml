@@ -1,0 +1,72 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: openobserve
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    repoURL: https://charts.openobserve.ai
+    chart: openobserve-standalone
+    targetRevision: 0.92.2
+    helm:
+      releaseName: o2
+      values: |
+        # Optional writable cache volume. Enable this when running with
+        # securityContext.readOnlyRootFilesystem: true so OpenObserve can create its cache
+        # directory (otherwise the process panics with a ReadOnlyFilesystem error).
+        # NOTE: also set config.ZO_DATA_CACHE_DIR to the same mountPath so the app writes its
+        # cache there. Validate the path for your app version before relying on it.
+        cache:
+          enabled: true
+          mountPath: /cache
+          medium: "Memory"   # use a tmpfs-backed emptyDir instead of node disk
+          sizeLimit: "1Gi"   # optional emptyDir size limit
+
+        auth:
+          existingRootUserSecret:
+            name: "openobserve-secret"
+            emailKey: "ZO_ROOT_USER_EMAIL"
+            passwordKey: "ZO_ROOT_USER_PASSWORD"
+
+        config:
+          ZO_APP_NAME: "Keep Out!"    
+          ZO_LOCAL_MODE: "true"
+          ZO_LOCAL_MODE_STORAGE: "disk"
+          ZO_MEMORY_CACHE_MAX_SIZE: "512"
+          ZO_DISK_CACHE_MAX_SIZE: "8192"
+          ZO_TELEMETRY: "false"
+
+        service:
+          type: ClusterIP
+
+        ingress:
+          enabled: true
+          className: "traefik"
+          annotations:
+            traefik.ingress.kubernetes.io/router.entrypoints: websecure
+            traefik.ingress.kubernetes.io/router.tls.certresolver: letsencrypt
+          hosts:
+            - host: o2.jmly.me
+              paths:
+                - path: /
+                  pathType: ImplementationSpecific
+        resources:
+          requests:
+            cpu: 200m
+            memory: 512Mi
+          limits:
+            cpu: 1500m
+            memory: 2Gi
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: openobserve
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - ServerSideApply=true

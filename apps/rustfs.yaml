@@ -15,6 +15,11 @@ spec:
     targetRevision: 0.12.0
     helm:
       values: |
+        image:
+          rustfs:
+            repository: rustfs/rustfs
+            pullPolicy: IfNotPresent
+            tag: "1.0.0-beta.12"
         replicaCount: 1
         mode:
           standalone:
