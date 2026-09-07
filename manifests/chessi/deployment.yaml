@@ -26,7 +26,7 @@ spec:
               containerPort: 3000
           env:
             - name: ANALYSIS_DEPTH
-              value: "12"
+              value: "16"
           envFrom:
             - secretRef:
                 name: chessi-secrets
