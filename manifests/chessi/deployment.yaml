@@ -27,6 +27,9 @@ spec:
           env:
             - name: ANALYSIS_DEPTH
               value: "12"
+          envFrom:
+            - secretRef:
+                name: chessi-secrets
           volumeMounts:
             - name: data
               mountPath: /app/data
