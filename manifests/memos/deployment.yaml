@@ -13,10 +13,17 @@ spec:
     spec:
       containers:
       - name: memos
-        image: neosmemo/memos:0.29.1
+        image: neosmemo/memos:0.30.0
+        imagePullPolicy: Always
+        ports:
+          - name: http
+            containerPort: 5230
         envFrom:
         - secretRef:
             name: memos
+        volumeMounts:
+          - name: data
+            mountPath: /var/opt/memos
         livenessProbe:
           httpGet:
             path: /healthz
@@ -29,3 +36,7 @@ spec:
             port: 5230
           initialDelaySeconds: 5
           periodSeconds: 5
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: memos-data
