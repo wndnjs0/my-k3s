@@ -19,7 +19,7 @@ spec:
         - name: gitea-registry
       containers:
         - name: chessi
-          image: git.jmly.me/chessi/chessi:ed92dc7
+          image: git.jmly.me/chessi/chessi:8e45435
           imagePullPolicy: Always
           ports:
             - name: http
