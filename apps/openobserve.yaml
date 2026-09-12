@@ -40,6 +40,7 @@ spec:
           ZO_MEMORY_CACHE_MAX_SIZE: "512"
           ZO_DISK_CACHE_MAX_SIZE: "8192"
           ZO_TELEMETRY: "false"
+          ZO_LOG_LEVEL: "warn"
 
         service:
           type: ClusterIP
