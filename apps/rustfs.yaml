@@ -41,7 +41,7 @@ spec:
                   pathType: Prefix
         config:
           rustfs:
-            log_level: "info"
+            log_level: "warn"
             region: "us-east-1"
             obs_log_directory: ""
             log_rotation:

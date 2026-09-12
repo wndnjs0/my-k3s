@@ -1,5 +1,6 @@
 global:
   domain: argocd.jmly.me
+  logLevel: warn
 configs:
   params:
     server.insecure: true
