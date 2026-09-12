@@ -40,7 +40,7 @@ spec:
                 Path /var/log/containers/*.log
                 multiline.parser docker, cri
                 Tag kube.*
-                Exclude_Path /var/log/containers/fluent-bit*.log
+                Exclude_Path /var/log/containers/fluentbit*.log
                 Mem_Buf_Limit 5MB
                 Skip_Long_Lines On
 
