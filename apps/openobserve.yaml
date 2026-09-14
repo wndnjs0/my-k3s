@@ -56,7 +56,6 @@ spec:
             - host: o2.jmly.me
               paths:
                 - path: /
-                  pathType: ImplementationSpecific
         resources:
           requests:
             cpu: 200m
