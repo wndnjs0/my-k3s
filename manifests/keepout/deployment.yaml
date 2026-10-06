@@ -19,7 +19,7 @@ spec:
         - name: gitea-registry
       containers:
         - name: keepout
-          image: git.jmly.me/keepout/keepout:557f964
+          image: git.jmly.me/keepout/keepout:211267c
           imagePullPolicy: Always
           ports:
             - name: http
