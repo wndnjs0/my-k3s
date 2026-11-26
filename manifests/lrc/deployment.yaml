@@ -19,7 +19,7 @@ spec:
         - name: gitea-registry
       containers:
         - name: lrc
-          image: git.jmly.me/lrc/lrc:buildcache
+          image: git.jmly.me/lrc/lrc:74baa14
           imagePullPolicy: Always
           env:
             - name: ADMIN_PASSWORD
