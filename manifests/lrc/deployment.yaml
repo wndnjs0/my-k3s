@@ -30,18 +30,6 @@ spec:
           volumeMounts:
             - name: data
               mountPath: /data
-          readinessProbe:
-            httpGet:
-              path: /login
-              port: http
-            initialDelaySeconds: 5
-            periodSeconds: 10
-          livenessProbe:
-            httpGet:
-              path: /login
-              port: http
-            initialDelaySeconds: 20
-            periodSeconds: 30
       volumes:
         - name: data
           persistentVolumeClaim:
